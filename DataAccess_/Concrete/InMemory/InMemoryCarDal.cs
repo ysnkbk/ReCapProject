@@ -1,76 +1,58 @@
-﻿using DataAccess_.Abstract;
+﻿using DataAccess.Abstract;
 using Entitites.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
-using System.Linq;
-    
 
-namespace DataAccess_.Concrete.InMemory
+namespace DataAccess.Concrete.InMemory
 {
-    
     public class InMemoryCarDal : ICarDal
     {
         List<Car> _cars;
         public InMemoryCarDal()
         {
-            _cars = new List<Car>
+            _cars = new List<Car>()
             {
-                new Car{Id=1,BlandId=1,ColorId=200,ModelYear="1999",DailyPrice=50000,Description="Old"},
-                new Car{Id=2,BlandId=2,ColorId=201,ModelYear="2000",DailyPrice=51000,Description="Young"},
-                new Car{Id=3,BlandId=3,ColorId=202,ModelYear="2001",DailyPrice=52000,Description="Child"},
-                new Car{Id=4,BlandId=4,ColorId=203,ModelYear="2002",DailyPrice=53000,Description="New" },
-                new Car{Id=5,BlandId=5,ColorId=204,ModelYear="2003",DailyPrice=54000,Description="Super"}
+                new Car{Id=1,BlandId=1,ColorId=200,ModelYear="1999",DailyPrice=50000,Descriptions="Old"},
+                new Car{Id=2,BlandId=2,ColorId=201,ModelYear="2000",DailyPrice=51000,Descriptions="Young"},
+                new Car{Id=3,BlandId=3,ColorId=202,ModelYear="2001",DailyPrice=52000,Descriptions="Child"},
+                new Car{Id=4,BlandId=4,ColorId=203,ModelYear="2002",DailyPrice=53000,Descriptions="New" },
+                new Car{Id=5,BlandId=5,ColorId=204,ModelYear="2003",DailyPrice=54000,Descriptions="Super"}
+
 
             };
         }
-        public void Add(Car car)
+
+        public void Add(Car entity)
         {
-            _cars.Add(car);
-
-
+            throw new NotImplementedException();
         }
 
-        public void Delete(Car car)
+        public void Delete(Car entity)
         {
-            Car carToDelete=null;
-            carToDelete = _cars.SingleOrDefault(p=>p.Id==car.Id);
-            _cars.Remove(carToDelete);
-                       
+            throw new NotImplementedException();
+        }
+
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Car> GetAll()
         {
             return _cars;
-
+         
         }
 
-        public List<Car> GetById()
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<Car> GetById(int carId)
+        public void Update(Car entity)
         {
-           return  _cars.Where(c => c.Id == carId).ToList();
-
-
-        }
-
-        public void Update(Car car)
-        {
-            
-            Car carToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
-            carToUpdate.Id = car.Id;
-            carToUpdate.BlandId = car.BlandId;
-            carToUpdate.ColorId = car.ColorId;
-            carToUpdate.DailyPrice = car.DailyPrice;
-            carToUpdate.Description = car.Description;
-            carToUpdate.ModelYear = car.ModelYear;
-            
-
-
-
+            throw new NotImplementedException();
         }
     }
 }
