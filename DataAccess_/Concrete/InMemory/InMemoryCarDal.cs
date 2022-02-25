@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entitites.Concrete;
+using Entitites.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -50,9 +51,16 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
+        public List<CarDetailsDto> GetCarDetails()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(Car entity)
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

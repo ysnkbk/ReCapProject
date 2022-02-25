@@ -5,13 +5,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-
+using Entitites.DTOs;
 
 namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
+        }
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
@@ -36,6 +44,11 @@ namespace Business.Concrete
         public List<Car> GetCarsByColorId(int id)
         {
             return _carDal.GetAll(p => p.ColorId == id);
+        }
+
+        public List<CarDetailsDto> GetAllDetails()
+        {
+            return _carDal.GetCarDetails();
         }
     }
 }
