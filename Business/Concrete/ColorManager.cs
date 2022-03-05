@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities;
 using DataAccess.Abstract;
 using Entitites.Concrete;
 using System;
@@ -17,37 +19,53 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
-            
+            if(color.ColorId==1)
+            {
+                return new ErrorResult(Messages.ProductNameInvalid);
+            }
+            _colorDal.Add(color);
+            return new SuccessResult(Messages.ProductAdded);
+
            
         }
 
-        public void Delete(Color color)
+        public IResult Delete(Color color)
+        {
+            if (color.ColorId == 1)
+            {
+                return new ErrorResult(Messages.ProductNameInvalid);
+            }
+            _colorDal.Add(color);
+            return new SuccessResult(Messages.ProductDeleted);
+        }
+
+
+        public IDataResult<List<Color>> GetColorId(int id)
         {
             throw new NotImplementedException();
         }
 
-
-        public List<Color> GetColorId(int id)
+        public IResult Update(Color color)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Color color)
-        {
-            throw new NotImplementedException();
+            if (color.ColorId == 1)
+            {
+                return new ErrorResult(Messages.ProductNameInvalid);
+            }
+            _colorDal.Add(color);
+            return new SuccessResult(Messages.ProductUpdated);
         }
 
      
 
-        List<Color> IColorService.GetAll()
+        IDataResult<List<Color>> IColorService.GetAll()
         {
             throw new NotImplementedException();
         }
 
 
-        List<Color> IColorService.GetColorId(int id)
+        IDataResult<List<Color>> IColorService.GetColorId(int id)
         {
             throw new NotImplementedException();
         }
